@@ -1,5 +1,6 @@
 package com.regal.spike.recyclerview;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -7,9 +8,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.RecyclerItemViewHolder> {
     private String[] mDataset;
-
+    private Context mContext;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -26,8 +29,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public RecyclerAdapter(String[] myDataset) {
+    // You can have all kinds of data here.
+    public RecyclerAdapter(Context context, String[] myDataset) {
         mDataset = myDataset;
+        mContext = context;
     }
 
     // Create new views (invoked by the layout manager)
@@ -47,6 +52,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         holder.textView.setText(mDataset[position]);
+
+        //Load some images with picasso
+        Picasso.with(mContext)
+                .load("https://i.imgur.com/33PMNec.jpg")
+                .error(R.color.colorAccent)
+                .into(holder.imageView);
 
     }
 
