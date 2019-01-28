@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         recycler.setHasFixedSize(true);
 
         // use a linear layout manager
-        layoutManager = new LinearLayoutManager(this);
+        layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recycler.setLayoutManager(layoutManager);
 
         // specify an adapter (see also next example)
